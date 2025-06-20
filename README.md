@@ -77,15 +77,15 @@ Provide the overview of the dataset by how many total unique apps and categories
         ON googleplaystore.App = googleplaystore_user_revies.App
         GROUP BY Category
         ORDER BY avg_sentiment_polarity DESC
-   8. Sentiment Reviews by App Category:
+8. Sentiment Reviews by App Category:
 
-          SELECT TOP 10
-          Category,
-          Sentiment,
-          COUNT(*) AS total_sentiment
-          FROM googleplaystore
-          JOIN gogleplaystore_user_reviews
-          ON googleplaystore.APP = googleplaystore_user_reviews.APP
-          WHERE Sentiment <> 'nan'
-          GROUP BY Category, Sentiment
-          ORDER BY total_sentiment DESC
+        SELECT TOP 10
+        Category,
+        Sentiment,
+        COUNT(*) AS total_sentiment
+        FROM googleplaystore
+        JOIN gogleplaystore_user_reviews
+        ON googleplaystore.APP = googleplaystore_user_reviews.APP
+        WHERE Sentiment <> 'nan'
+        GROUP BY Category, Sentiment
+        ORDER BY total_sentiment DESC
