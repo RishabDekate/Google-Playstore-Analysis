@@ -18,3 +18,74 @@ Provide the overview of the dataset by how many total unique apps and categories
 - Top Categories by Number of Installs: Identify the app categories with the highest total number of installs.
 - Average Sentiment Polarity by App Categories: Analyse the average sentiment polarity of user reviews for each app category.
 - Sentiment Reviews by App Category: Provide the distribution sentiments across different app categories.
+## SQL Analysis
+1. Overview of Dataset:
+
+        SELECT 
+        COUNT(DISTINCT APP) AS total_apps,
+        COUNT(DISTINCT Category) AS total_categories
+        FROM googleplaystore
+2. Exploring App Categories:
+
+        SELECT TOP 5
+        Category,
+        COUNT(App) AS Total_app
+        FROM googleplaystore
+        GROUP BY Category
+        ORDER BY Total_app DESC
+3. Top Rated Free Apps:
+
+        SELECT TOP 10
+        App,
+        Category,
+        Rating,
+        Reviews
+        FROM googleplaystore
+        WHERE Type = 'Free' AND Rating <> 'NaN'
+        ORDER BY Rating DESC
+4. Most Reveiwed Apps:
+
+        SELECT TOP 10
+        Category,
+        App,
+        Reveiews
+        FROM googleplaystore
+        ORDER BY Reviews DESC
+5. Average Rating by Category:
+
+        SELECT TOP 5
+        Category,
+        AVG(TRY CAST(Rating AS FLOAT)) AS avg_rating
+        FROM googleplaystore
+        GROUP BY Category
+        ORDER BY avg_rating DESC
+6. Top Categories by Number of Installs:
+
+        SELECT TOP 10
+        Category,
+        SUM(CAST(REPLACE(SUBSTRING(Installs, 1, PATINDEX('%[^0-9]%', Installs + ' ')- 1),',', ' ') AS INT)) AS total_installs
+        FROM googleplaystore
+        GROUP BY Category
+        ORDER BY total_installs DESC
+7. Average Sentiment Polarity by App Category:
+
+        SELECT TOP 10
+        Category,
+        AVG(TRY CAST(Sentiment_Polarity AS FLOAT)) AS avg_sentiment_polarity
+        FROM googlepalystore
+        JOIN googleplaystore_user_reviews
+        ON googleplaystore.App = googleplaystore_user_revies.App
+        GROUP BY Category
+        ORDER BY avg_sentiment_polarity DESC
+   8. Sentiment Reviews by App Category:
+
+          SELECT TOP 10
+          Category,
+          Sentiment,
+          COUNT(*) AS total_sentiment
+          FROM googleplaystore
+          JOIN gogleplaystore_user_reviews
+          ON googleplaystore.APP = googleplaystore_user_reviews.APP
+          WHERE Sentiment <> 'nan'
+          GROUP BY Category, Sentiment
+          ORDER BY total_sentiment DESC
