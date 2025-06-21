@@ -89,3 +89,16 @@ Provide the overview of the dataset by how many total unique apps and categories
         WHERE Sentiment <> 'nan'
         GROUP BY Category, Sentiment
         ORDER BY total_sentiment DESC
+## Data Analysis & Visualization
+For analysis of the dataset and visualization we used Power BI software as the clients wanted a dashboard for presentation of the findings.
+### Dashboard:
+![image](https://github.com/user-attachments/assets/be84b4ba-d180-4db4-b92f-3fa9086bceda)
+## Findings & Insights
+- The total number of apps and categories are 8K and 33.
+- Robolox is the top-rated free app.
+- The app with the highest number of reviews is Subway surfer.
+- The average rating for each app category is displayed on the dashboard and the most reviewed category is Personalized category.
+- The highest total number of installs in app is games category, and the average sentiment polarity of user reviews for app is 0.28 for personalization category.
+- The distribution of sentiments across sentiments across different app categories is 1.22K positive, 1.13K negative, and 1.04K neutral sentiments.
+
+These are all the findings that we have got while analyzing the dayaset provided for the analysis. Hope it will help the client to gain valuable insights on the app and act according to it.
